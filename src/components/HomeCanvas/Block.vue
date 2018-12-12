@@ -21,7 +21,7 @@ export default {
 
   data() {
     return {
-      colour: new Colour(200, 100, 200),
+      colour: new Colour(255, 196, 20),
       ink: 0,
       rotate: 0,
       xPixels: this.x * 31,

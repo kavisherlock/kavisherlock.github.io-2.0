@@ -31,7 +31,7 @@ export default {
 .section {
   padding: 10px;
   margin: 10px;
-  border: solid rgb(245, 141, 176) 1px;
+  border: solid rgb(255, 196, 20) 1px;
 }
 #about {
   line-height: 1.5;

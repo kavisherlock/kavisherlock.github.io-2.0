@@ -44,4 +44,7 @@ export default {
 </script>
 
 <style>
+  #subtext {
+    margin-top: -5px;
+  }
 </style>
