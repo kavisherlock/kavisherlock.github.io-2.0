@@ -24,6 +24,7 @@ export default {
     return {
       currentTab: 'Home',
       tabs: ['Home', 'Books', 'Work'],
+      key: 'AIzaSyBj6pwMyPi8NVKBybSPJ3WWwGfx3__Nr4I',
     };
   },
   components: {
