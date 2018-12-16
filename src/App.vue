@@ -9,6 +9,7 @@
     <component
       v-bind:is="currentTabComponent"
       class="tab"
+      :apiKey="this.apiKey"
     />
   </div>
 </template>
@@ -24,7 +25,7 @@ export default {
     return {
       currentTab: 'Home',
       tabs: ['Home', 'Books', 'Work'],
-      key: 'AIzaSyBj6pwMyPi8NVKBybSPJ3WWwGfx3__Nr4I',
+      apiKey: 'AIzaSyBj6pwMyPi8NVKBybSPJ3WWwGfx3__Nr4I',
     };
   },
   components: {

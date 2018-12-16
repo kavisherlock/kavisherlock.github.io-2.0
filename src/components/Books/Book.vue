@@ -1,32 +1,35 @@
 <template>
   <div class="book">
-    <img :src='bookSource' />
+    <img :src='this.imageThumbnail' />
   </div>
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   name: 'Book',
-  props: {
-    index: Number,
-    year: Number
+  data() {
+    return {
+      imageThumbnail: '',
+    };
   },
-  computed: {
-    bookSource() {
-      let imgSrc;
-      try {
-        imgSrc = require(`../../resources/books/${this.year}/book${this.index}.jpeg`);
-      } catch(error) {
-        try {
-          imgSrc = require(`../../resources/books/${this.year}/book${this.index}.jpg`);
-        } catch(error2) {
-          try {
-            imgSrc = require(`../../resources/books/${this.year}/book${this.index}.png`);
-          } catch(error3) {}
-        }
-      }
-      return imgSrc;
-    },
+  props: {
+    bookName: String,
+    apiKey: String,
+  },
+  mounted() {
+    if (this.bookName) {
+      axios
+        .get(`https://www.googleapis.com/books/v1/volumes?key=${this.apiKey}&q=${encodeURI(this.bookName.trim())}`)
+        .then((response) => {
+          let index = 1;
+          while (!response.data.items[index].volumeInfo.imageLinks) {
+            index += 1;
+          }
+          this.imageThumbnail = response.data.items[index].volumeInfo.imageLinks.thumbnail;
+        });
+    }
   },
 };
 </script>
@@ -35,13 +38,9 @@ export default {
 <style scoped>
 .book {
   text-align: center;
-  background-color: purple;
   color: white;
-  width: 12.5%;
-  height: 100px;
-}
-
-.book img {
-  width: 100%;
+  width: auto;
+  height: auto;
+  max-width: 200px;
 }
 </style>
